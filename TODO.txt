@@ -1,0 +1,112 @@
+Things to do in order to finish this project.
+Some of these should be done sequencially while others can be done at any time.
+
+TODO List
+    - Learn basic lua script
+        - Find a tutorial on its syntax
+            - Practice its core features in smaller projects
+        - Learn how the lua files in rorr mod loader work
+            - Talk to someone in the Dicord about it
+            - Learn what is an important file and what isn't
+            - learn how to organize mod folders so that dependencies work
+    - Learn the process for creating a mod character
+        - Flesh out the abilities in pseudo code
+        - Reread the Jam example character code
+            - Practice creating Jam from "scratch"
+    - Create sprite art for Grappler
+        - Design the character
+            - Experiment until a design looks good
+            - Create still-frames as psuedo animations
+        - Create animations
+            - Block out the animations
+            - Fill in animations
+            - Create Sprites for:
+                - climb
+                - credits
+                - death
+                - decoy
+                - drone_idle
+                - drone_shoot
+                - fall
+                - idle
+                - jump
+                - jumpPeak
+                - log (This would definitely have to be a commission)
+                - pallette
+                - portrait
+                - portraitSmall
+                - select
+                - shoot1_a
+                - shoot1_b
+                - shoot1_c
+                - shoot2
+                - whipBullet??? (If the pull is tracked as a seperate sprite from Grappler)
+                - shoot3_a (whip out)
+                - shoot3_b (pull)
+                - shoot3_c (spin up)
+                - shoot3_d (dive)
+                - shoot3_e (slam)
+                - shockwaveParticle (for shoot3)
+                - shoot4_a (charging)
+                - shoot4_b (strike)
+                - blockMeter (for shoot4. Could also be some other kind of indicator of charge.)
+                - walk
+                - walkBack
+    - Create the abilities
+        - Primary ability
+        - Secondary ability
+        - Mobility ability
+        - Special ability
+        - Passive ability (???)
+    - Match sprite animations to character abilities
+        - animate sprites in the correct positions
+        - track damage and hurt boxes onto Sprites or vice versa
+        - prepare placeholder sprites to use for testing before the full sprites are ready
+    - Balance the abilities
+        - release the mod to the Discord
+        - fix any bugs
+        - balance the character
+        - adjust (or remove passive) if necessary
+    - Prepare for final release
+        - look into what it takes to get it published
+        - consider multiplayer capabilities
+        - clean up code one final time to make sure it's easily understandable
+
+Grappler Description:
+Grappler is a brawling melee character with high mobility abilities. Cooldown
+management is essential to not leave yourself stranded in a tricky situation.
+
+Passive:
+    Option One (Adrenaline Rush):
+        Killing an enemy reduces cooldowns by 0.5s, but all of your base 
+        cooldowns are very long.
+    Option Two (Fervor):
+        The secondary ability reduces the cooldown of the Mobility Ability
+        by 50% if it hits an enemy. Increases by 5% for each additional enemy 
+        hit after the first. Increase the cooldown of just the Mobility Ability.
+    Option Three (Ignore Pain):
+        Blocking damage with the Special Ability, reduces the cooldown of the mobility
+        ability. Increase the cooldown of just the mobility ability.
+    Option Four (...):
+        Nothing. All of abilities have normal cooldowns.
+
+Primary (Rule of Three):
+    A three-hit combo ending with a short dash forward. The damage dealt will 
+    be weak and the combo will be slow. The intention is to provide a 
+    last-resort piece of mobility while all of the other abilities are on 
+    cooldown.
+
+Secondary (Brutal Belay):
+    Whip the hook forward, piercing enemies. Enemies hit are pulled until they
+    are directly in front of you. Does NOT stun.
+
+Mobility (Acrobatic Mantle):
+    Throw the hook forward tethering and stunning the first enemy hit. Pull yourself to the 
+    enemy and upon contact, flip yourself up and into the air. Press again while ariborn to 
+    dive down and slam into the ground. Send out a shockwave dealing damage in an area and
+    knocking up enemies.
+
+Special (Threshold):
+    Hold to brace yourself for up to two seconds, taking 75% reduced damage. After releasing, 
+    or upon reaching the max time, strike forward dealing damage scaling with the damage 
+    taken while bracing.

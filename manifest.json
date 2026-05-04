@@ -1,0 +1,10 @@
+{
+    "name": "Grappler.zip",
+    "description": "Adds The Grappler, a survivor focused on high-mobility, melee combat.",
+    "version_number": "0.0.1",
+    "dependencies": [
+        "ReturnOfModding-ReturnOfModding-1.1.7",
+		"ReturnsAPI-ReturnsAPI-0.1.53"
+    ],
+    "website_url": ""
+}
