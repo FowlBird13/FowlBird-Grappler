@@ -9,8 +9,8 @@ local sprites = {
     jump		        = Sprite.new("sGrapplerJump",		path.combine(SPRITE_PATH, "jump.png"),     1, 0, 0),
     jump_peak	        = Sprite.new("sGrapplerJumpPeak",	path.combine(SPRITE_PATH, "jump_peak.png"), 1, 0, 0),
     fall		        = Sprite.new("sGrapplerFall",		path.combine(SPRITE_PATH, "fall.png"),     1, 0, 0),
-    climb		        = Sprite.new("sGrapplerClimb",		path.combine(SPRITE_PATH, "climb.png"),    1, 0, 0),
-    climb_hurt	        = Sprite.new("sGrapplerClimbHurt",	path.combine(SPRITE_PATH, "climb.png"),    1, 0, 0),
+    climb		        = Sprite.new("sUtilitylimb",		path.combine(SPRITE_PATH, "climb.png"),    1, 0, 0),
+    climb_hurt	        = Sprite.new("sUtilitylimbHurt",	path.combine(SPRITE_PATH, "climb.png"),    1, 0, 0),
     death		        = Sprite.new("sGrapplerDeath",		path.combine(SPRITE_PATH, "death.png"),    1, 0, 0),
     decoy		        = Sprite.new("sGrapplerDecoy",		path.combine(SPRITE_PATH, "decoy.png"),    1, 0, 0)
 }
@@ -58,52 +58,64 @@ grappler:set_stats_level({
     armor = 1,
 })
 
-local grapplerZ = grappler:get_skills(0)[1]
-local grapplerX = grappler:get_skills(1)[1]
-local grapplerC = grappler:get_skills(2)[1]
-local grapplerV = grappler:get_skills(3)[1]
+local primary = grappler:get_skills(0)[1]
+local secondary = grappler:get_skills(1)[1]
+local utility = grappler:get_skills(2)[1]
+local special = grappler:get_skills(3)[1]
 
-grapplerZ.animation = sGrapplerShoot[1]
-grapplerX.animation = sGrapplerShoot[4]
-grapplerC.animation = sGrapplerShoot[5]
-grapplerV.animation = sGrapplerShoot[6]
+primary.animation = sGrapplerShoot[1]
+secondary.animation = sGrapplerShoot[4]
+utility.animation = sGrapplerShoot[5]
+special.animation = sGrapplerShoot[6]
 
 -- assign a skill icon to each of the abilities
-grapplerZ.sprite = sGrapplerSkills
-grapplerZ.subimage = 0
-grapplerX.sprite = sGrapplerSkills
-grapplerX.subimage = 1
-grapplerC.sprite = sGrapplerSkills
-grapplerC.subimage = 2
-grapplerV.sprite = sGrapplerSkills
-grapplerV.subimage = 3
+primary.sprite = sGrapplerSkills
+primary.subimage = 0
+secondary.sprite = sGrapplerSkills
+secondary.subimage = 1
+utility.sprite = sGrapplerSkills
+utility.subimage = 2
+special.sprite = sGrapplerSkills
+special.subimage = 3
 
-grapplerZ.damage = 1
-grapplerZ.cooldown = 40
-grapplerX.damage = 3
-grapplerX.cooldown = 120
-grapplerC.damage = 5
-grapplerC.cooldown = 240
-grapplerV.damage = 3
-grapplerV.cooldown = 120
+primary.damage = 1
+primary.cooldown = 40
+secondary.damage = 3
+secondary.cooldown = 120
+utility.damage = 5
+utility.cooldown = 240
+special.damage = 3
+special.cooldown = 120
 
 -- create states that the actor can "be in"
-local stateGrapplerZ = ActorState.new(grapplerZ.identifier)
-stateGrapplerZ.activity_flags = ActorState.ActivityFlag.ALLOW_ROPE_CANCEL
-local stateGrapplerX = ActorState.new(grapplerX.identifier)
-local stateGrapplerC = ActorState.new(grapplerC.identifier)
-local stateGrapplerV = ActorState.new(grapplerV.identifier)
+local statePrimary = ActorState.new(primary.identifier)
+statePrimary.activity_flags = ActorState.ActivityFlag.ALLOW_ROPE_CANCEL
+local stateSecondary = ActorState.new(secondary.identifier)
+local stateUtility = ActorState.new(utility.identifier)
+local statespecial = ActorState.new(special.identifier)
 
 -- set grappler's animation to the ability that is activated
-Callback.add(grapplerZ.on_activate, function(actor, skill, slot)
-	actor:set_state(stateGrapplerZ)
+Callback.add(primary.on_activate, function(actor, skill, slot)
+	actor:set_state(statePrimary)
 end)
-Callback.add(grapplerX.on_activate, function(actor, skill, slot)
-	actor:set_state(stateGrapplerX)
+Callback.add(secondary.on_activate, function(actor, skill, slot)
+	actor:set_state(stateSecondary)
 end)
-Callback.add(grapplerC.on_activate, function(actor, skill, slot)
-	actor:set_state(stateGrapplerC)
+Callback.add(utility.on_activate, function(actor, skill, slot)
+	actor:set_state(stateUtility)
 end)
-Callback.add(grapplerV.on_activate, function(actor, skill, slot)
-	actor:set_state(stateGrapplerV)
+Callback.add(special.on_activate, function(actor, skill, slot)
+	actor:set_state(statespecial)
 end)
+
+local state_onEnter_shared_init = function(actor, data_table)
+	local data = Instance.get_data(actor)
+	actor.image_index = 0
+	data.fired = 0
+	data.up = false
+end
+
+Callback.add(statePrimary.on_enter,			state_onEnter_shared_init)
+Callback.add(stateSecondary.on_enter,			state_onEnter_shared_init)
+Callback.add(stateUtility.on_enter,			state_onEnter_shared_init)
+Callback.add(stateSpecial.on_enter,			state_onEnter_shared_init)
