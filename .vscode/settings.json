@@ -1,0 +1,14 @@
+{
+    "Lua.diagnostics.globals": [
+        "Sprite",
+        "Survivor",
+        "Callback",
+        "Initialize",
+        "mods",
+        "path",
+        "Sound"
+    ],
+    "Lua.workspace.library": [
+        ".vscode/api_definitions.lua"
+    ]
+}
