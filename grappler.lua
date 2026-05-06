@@ -1,7 +1,7 @@
 -- Sprite.new(identifier, sprite_path, image_number, x_origin, y_origin)
 
 
--- as of now ALL of the numbers for origins need to be replaced.
+-- Create a table with the basic animations
 local sprites = {
     idle			    = Sprite.new("sGrapplerIdle",       "Sprites/idle.png",     1, 15, 12),
     walk		        = Sprite.new("sGrapplerWalk",		"Sprites/walk.png",     1, 22, 16),
@@ -14,6 +14,7 @@ local sprites = {
     decoy		        = Sprite.new("sGrapplerDecoy",		"Sprites/decoy.png",    1, 18, 36)
 }
 
+-- Create a table with the ability animations (referred to as "shoot")
 local sGrapplerShoot = {
     shoot1_a            = Sprite.new("sGrapplerShoot1_a",   "Sprites/shoot1_a",     1, 23, 38),
     shoot1_b            = Sprite.new("sGrapplerShoot1_b",   "Sprites/shoot1_b",     1, 23, 38),
@@ -23,7 +24,12 @@ local sGrapplerShoot = {
     shoot4              = Sprite.new("sGrapplerShoot4",     "Sprites/shoot4",       1, 23, 38)
 }
 
+local sGrapplerSkills = Sprite.new("sGrapplerSkills", "Sprites/skills", 5)
+
+--Create the new survivor instance: grappler
 local grappler = Survivor.new("grappler")
+
+grappler.sprite_idle = sprites.idle
 
 Callback.add(grappler.on_init, function(actor)
 	actor.sprite_idle			= sprites.idle
@@ -36,7 +42,6 @@ Callback.add(grappler.on_init, function(actor)
 	actor.sprite_decoy			= sprites.decoy
 	actor.sprite_climb_hurt		= sprites.climb_hurt
 end)
-
 
 --These base stats and level stats needed to be added and balanced. Miner and Drifter would be good to look at
 grappler:set_stats_base({
@@ -51,4 +56,14 @@ grappler:set_stats_level({
     regen = 1,
     armor = 1,
 })
+
+local grapplerZ = grappler:get_skills(0)[1]
+local grapplerX = grappler:get_skills(1)[1]
+local grapplerC = grappler:get_skills(2)[1]
+local grapplerV = grappler:get_skills(3)[1]
+
+grapplerZ.animation = sGrapplerShoot[1]
+grapplerX.animation = sGrapplerShoot[4]
+grapplerC.animation = sGrapplerShoot[5]
+grapplerV.animation = sGrapplerShoot[6]
 
