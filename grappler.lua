@@ -25,7 +25,7 @@ local sGrapplerShoot = {
     shoot4              = Sprite.new("sGrapplerShoot4",     path.combine(SPRITE_PATH, "shoot4.png"),       1, 0, 0)
 }
 
-local sGrapplerSkills = Sprite.new("sGrapplerSkills", "Sprites/skills", 5)
+local sGrapplerSkills = Sprite.new("sGrapplerSkills", path.combine(SPRITE_PATH, "skills.png"), 5)
 
 --Create the new survivor instance: grappler
 local grappler = Survivor.new("grappler")
@@ -68,3 +68,42 @@ grapplerX.animation = sGrapplerShoot[4]
 grapplerC.animation = sGrapplerShoot[5]
 grapplerV.animation = sGrapplerShoot[6]
 
+-- assign a skill icon to each of the abilities
+grapplerZ.sprite = sGrapplerSkills
+grapplerZ.subimage = 0
+grapplerX.sprite = sGrapplerSkills
+grapplerX.subimage = 1
+grapplerC.sprite = sGrapplerSkills
+grapplerC.subimage = 2
+grapplerV.sprite = sGrapplerSkills
+grapplerV.subimage = 3
+
+grapplerZ.damage = 1
+grapplerZ.cooldown = 40
+grapplerX.damage = 3
+grapplerX.cooldown = 120
+grapplerC.damage = 5
+grapplerC.cooldown = 240
+grapplerV.damage = 3
+grapplerV.cooldown = 120
+
+-- create states that the actor can "be in"
+local stateGrapplerZ = ActorState.new(grapplerZ.identifier)
+stateGrapplerZ.activity_flags = ActorState.ActivityFlag.ALLOW_ROPE_CANCEL
+local stateGrapplerX = ActorState.new(grapplerX.identifier)
+local stateGrapplerC = ActorState.new(grapplerC.identifier)
+local stateGrapplerV = ActorState.new(grapplerV.identifier)
+
+-- set grappler's animation to the ability that is activated
+Callback.add(grapplerZ.on_activate, function(actor, skill, slot)
+	actor:set_state(stateGrapplerZ)
+end)
+Callback.add(grapplerX.on_activate, function(actor, skill, slot)
+	actor:set_state(stateGrapplerX)
+end)
+Callback.add(grapplerC.on_activate, function(actor, skill, slot)
+	actor:set_state(stateGrapplerC)
+end)
+Callback.add(grapplerV.on_activate, function(actor, skill, slot)
+	actor:set_state(stateGrapplerV)
+end)
