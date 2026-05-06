@@ -1,27 +1,28 @@
 -- Sprite.new(identifier, sprite_path, image_number, x_origin, y_origin)
 
+local SPRITE_PATH = path.combine(PATH, "Sprites")
 
 -- Create a table with the basic animations
 local sprites = {
-    idle			    = Sprite.new("sGrapplerIdle",       "Sprites/idle.png",     1, 0, 0),
-    walk		        = Sprite.new("sGrapplerWalk",		"Sprites/walk.png",     1, 0, 0),
-    jump		        = Sprite.new("sGrapplerJump",		"Sprites/jump.png",     1, 0, 0),
-    jump_peak	        = Sprite.new("sGrapplerJumpPeak",	"Sprites/jumppeak.png", 1, 0, 0),
-    lfall		        = Sprite.new("sGrapplerFall",		"Sprites/fall.png",     1, 0, 0),
-    climb		        = Sprite.new("sGrapplerClimb",		"Sprites/climb.png",    1, 0, 0),
-    climb_hurt	        = Sprite.new("sGrapplerClimbHurt",	"Sprites/climb.png",    1, 0, 0),
-    death		        = Sprite.new("sGrapplerDeath",		"Sprites/death.png",    1, 0, 0),
-    decoy		        = Sprite.new("sGrapplerDecoy",		"Sprites/decoy.png",    1, 0, 0)
+    idle			    = Sprite.new("sGrapplerIdle",       path.combine(SPRITE_PATH, "idle.png"),     1, 0, 0),
+    walk		        = Sprite.new("sGrapplerWalk",		path.combine(SPRITE_PATH, "walk.png"),     1, 0, 0),
+    jump		        = Sprite.new("sGrapplerJump",		path.combine(SPRITE_PATH, "jump.png"),     1, 0, 0),
+    jump_peak	        = Sprite.new("sGrapplerJumpPeak",	path.combine(SPRITE_PATH, "jump_peak.png"), 1, 0, 0),
+    fall		        = Sprite.new("sGrapplerFall",		path.combine(SPRITE_PATH, "fall.png"),     1, 0, 0),
+    climb		        = Sprite.new("sGrapplerClimb",		path.combine(SPRITE_PATH, "climb.png"),    1, 0, 0),
+    climb_hurt	        = Sprite.new("sGrapplerClimbHurt",	path.combine(SPRITE_PATH, "climb.png"),    1, 0, 0),
+    death		        = Sprite.new("sGrapplerDeath",		path.combine(SPRITE_PATH, "death.png"),    1, 0, 0),
+    decoy		        = Sprite.new("sGrapplerDecoy",		path.combine(SPRITE_PATH, "decoy.png"),    1, 0, 0)
 }
 
 -- Create a table with the ability animations (referred to as "shoot")
 local sGrapplerShoot = {
-    shoot1_a            = Sprite.new("sGrapplerShoot1_a",   "Sprites/shoot1_a",     1, 0, 0),
-    shoot1_b            = Sprite.new("sGrapplerShoot1_b",   "Sprites/shoot1_b",     1, 0, 0),
-    shoot1_c            = Sprite.new("sGrapplerShoot1_c",   "Sprites/shoot1_c",     1, 0, 0),
-    shoot2              = Sprite.new("sGrapplerShoot2",     "Sprites/shoot2",       1, 0, 0),
-    shoot3              = Sprite.new("sGrapplerShoot3",     "Sprites/shoot3",       1, 0, 0),
-    shoot4              = Sprite.new("sGrapplerShoot4",     "Sprites/shoot4",       1, 0, 0)
+    shoot1_a            = Sprite.new("sGrapplerShoot1_a",   path.combine(SPRITE_PATH, "shoot1_a.png"),     1, 0, 0),
+    shoot1_b            = Sprite.new("sGrapplerShoot1_b",   path.combine(SPRITE_PATH, "shoot1_b.png"),     1, 0, 0),
+    shoot1_c            = Sprite.new("sGrapplerShoot1_c",   path.combine(SPRITE_PATH, "shoot1_c.png"),     1, 0, 0),
+    shoot2              = Sprite.new("sGrapplerShoot2",     path.combine(SPRITE_PATH, "shoot2.png"),       1, 0, 0),
+    shoot3              = Sprite.new("sGrapplerShoot3",     path.combine(SPRITE_PATH, "shoot3.png"),       1, 0, 0),
+    shoot4              = Sprite.new("sGrapplerShoot4",     path.combine(SPRITE_PATH, "shoot4.png"),       1, 0, 0)
 }
 
 local sGrapplerSkills = Sprite.new("sGrapplerSkills", "Sprites/skills", 5)
