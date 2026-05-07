@@ -92,7 +92,7 @@ local statePrimary = ActorState.new(primary.identifier)
 statePrimary.activity_flags = ActorState.ActivityFlag.ALLOW_ROPE_CANCEL
 local stateSecondary = ActorState.new(secondary.identifier)
 local stateUtility = ActorState.new(utility.identifier)
-local statespecial = ActorState.new(special.identifier)
+local stateSpecial = ActorState.new(special.identifier)
 
 -- set grappler's animation to the ability that is activated
 Callback.add(primary.on_activate, function(actor, skill, slot)
@@ -105,7 +105,7 @@ Callback.add(utility.on_activate, function(actor, skill, slot)
 	actor:set_state(stateUtility)
 end)
 Callback.add(special.on_activate, function(actor, skill, slot)
-	actor:set_state(statespecial)
+	actor:set_state(stateSpecial)
 end)
 
 local state_onEnter_shared_init = function(actor, data_table)
