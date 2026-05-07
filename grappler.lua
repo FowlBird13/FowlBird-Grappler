@@ -31,6 +31,8 @@ local sGrapplerSkills = Sprite.new("sGrapplerSkills", path.combine(SPRITE_PATH, 
 local grappler = Survivor.new("grappler")
 
 grappler.sprite_idle = sprites.idle
+grappler.sprite_title = sprites.walk
+grappler.namespace = "Grappler"
 
 Callback.add(grappler.on_init, function(actor)
 	actor.sprite_idle			= sprites.idle
@@ -107,15 +109,3 @@ end)
 Callback.add(special.on_activate, function(actor, skill, slot)
 	actor:set_state(stateSpecial)
 end)
-
-local state_onEnter_shared_init = function(actor, data_table)
-	local data = Instance.get_data(actor)
-	actor.image_index = 0
-	data.fired = 0
-	data.up = false
-end
-
-Callback.add(statePrimary.on_enter,			state_onEnter_shared_init)
-Callback.add(stateSecondary.on_enter,			state_onEnter_shared_init)
-Callback.add(stateUtility.on_enter,			state_onEnter_shared_init)
-Callback.add(stateSpecial.on_enter,			state_onEnter_shared_init)
