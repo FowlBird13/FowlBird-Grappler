@@ -4,15 +4,15 @@ local SPRITE_PATH = path.combine(PATH, "Sprites")
 
 -- Create a table with the basic animations
 local sprites = {
-    idle			    = Sprite.new("sGrapplerIdle",       path.combine(SPRITE_PATH, "idle.png"),     1, 0, 0),
-    walk		        = Sprite.new("sGrapplerWalk",		path.combine(SPRITE_PATH, "walk.png"),     1, 0, 0),
-    jump		        = Sprite.new("sGrapplerJump",		path.combine(SPRITE_PATH, "jump.png"),     1, 0, 0),
-    jump_peak	        = Sprite.new("sGrapplerJumpPeak",	path.combine(SPRITE_PATH, "jump_peak.png"), 1, 0, 0),
-    fall		        = Sprite.new("sGrapplerFall",		path.combine(SPRITE_PATH, "fall.png"),     1, 0, 0),
-    climb		        = Sprite.new("sUtilitylimb",		path.combine(SPRITE_PATH, "climb.png"),    1, 0, 0),
-    climb_hurt	        = Sprite.new("sUtilitylimbHurt",	path.combine(SPRITE_PATH, "climb.png"),    1, 0, 0),
-    death		        = Sprite.new("sGrapplerDeath",		path.combine(SPRITE_PATH, "death.png"),    1, 0, 0),
-    decoy		        = Sprite.new("sGrapplerDecoy",		path.combine(SPRITE_PATH, "decoy.png"),    1, 0, 0)
+    idle			    = Sprite.new("sGrapplerIdle",       path.combine(SPRITE_PATH, "idle.png"),     1, 15, 16),
+    walk		        = Sprite.new("sGrapplerWalk",		path.combine(SPRITE_PATH, "walk.png"),     1, 15, 16),
+    jump		        = Sprite.new("sGrapplerJump",		path.combine(SPRITE_PATH, "jump.png"),     1, 15, 16),
+    jump_peak	        = Sprite.new("sGrapplerJumpPeak",	path.combine(SPRITE_PATH, "jump_peak.png"), 1, 15, 16),
+    fall		        = Sprite.new("sGrapplerFall",		path.combine(SPRITE_PATH, "fall.png"),     1, 15, 16),
+    climb		        = Sprite.new("sUtilitylimb",		path.combine(SPRITE_PATH, "climb.png"),    1, 13, 16),
+    climb_hurt	        = Sprite.new("sUtilitylimbHurt",	path.combine(SPRITE_PATH, "climb.png"),    1, 13, 16),
+    death		        = Sprite.new("sGrapplerDeath",		path.combine(SPRITE_PATH, "death.png"),    1, 15, 16),
+    decoy		        = Sprite.new("sGrapplerDecoy",		path.combine(SPRITE_PATH, "decoy.png"),    1, 15, 16)
 }
 
 -- Create a table with the ability animations (referred to as "shoot")
@@ -33,7 +33,6 @@ local grappler = Survivor.new("grappler")
 grappler.sprite_idle = sprites.idle
 grappler.sprite_title = sprites.walk
 grappler.namespace = "Grappler"
-
 Callback.add(grappler.on_init, function(actor)
 	actor.sprite_idle			= sprites.idle
 	actor.sprite_walk			= sprites.walk
@@ -48,7 +47,7 @@ end)
 
 --These base stats and level stats needed to be added and balanced. Miner and Drifter would be good to look at
 grappler:set_stats_base({
-    health = 1,
+    health = 10000,
     damage = 1,
     regen = 1
 })
