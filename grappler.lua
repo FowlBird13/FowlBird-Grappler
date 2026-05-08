@@ -49,7 +49,7 @@ end)
 grappler:set_stats_base({
     health = 10000,
     damage = 1,
-    regen = 1
+    regen = 100
 })
 
 grappler:set_stats_level({
