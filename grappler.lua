@@ -17,9 +17,7 @@ local sprites = {
 
 -- Create a table with the ability animations (referred to as "shoot")
 local sGrapplerShoot = {
-    shoot1_a            = Sprite.new("sGrapplerShoot1_a",   path.combine(SPRITE_PATH, "shoot1_a.png"),     1, 0, 0),
-    shoot1_b            = Sprite.new("sGrapplerShoot1_b",   path.combine(SPRITE_PATH, "shoot1_b.png"),     1, 0, 0),
-    shoot1_c            = Sprite.new("sGrapplerShoot1_c",   path.combine(SPRITE_PATH, "shoot1_c.png"),     1, 0, 0),
+    shoot1              = Sprite.new("sGrapplerShoot1",     path.combine(SPRITE_PATH, "shoot1.png"),       3, 15, 16),
     shoot2              = Sprite.new("sGrapplerShoot2",     path.combine(SPRITE_PATH, "shoot2.png"),       1, 0, 0),
     shoot3              = Sprite.new("sGrapplerShoot3",     path.combine(SPRITE_PATH, "shoot3.png"),       1, 0, 0),
     shoot4              = Sprite.new("sGrapplerShoot4",     path.combine(SPRITE_PATH, "shoot4.png"),       1, 0, 0)
@@ -95,7 +93,7 @@ local stateSecondary = ActorState.new(secondary.identifier)
 local stateUtility = ActorState.new(utility.identifier)
 local stateSpecial = ActorState.new(special.identifier)
 
--- set grappler's animation to the ability that is activated
+-- set grappler's state to the ability that is activated
 Callback.add(primary.on_activate, function(actor, skill, slot)
 	actor:set_state(statePrimary)
 end)
@@ -107,4 +105,11 @@ Callback.add(utility.on_activate, function(actor, skill, slot)
 end)
 Callback.add(special.on_activate, function(actor, skill, slot)
 	actor:set_state(stateSpecial)
+end)
+
+--Perform the skills 
+Callback.add(primary.on_step, function(actor, data)
+    actor:actor_animation_set(sGrapplerShoot.shoot1, 0.2)
+
+    actor:skill_util_exit_state_on_anim_end()
 end)
